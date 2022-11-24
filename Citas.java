@@ -53,7 +53,7 @@ public class Citas {
         for (String i : Cita.keySet()) {
             System.out.println("Fecha y hora: " + i + " Motivo: " + Cita.get(i));
         }
-        for (String i : Cita.keySet()){
+        for (String i : Personas.keySet()){
             System.out.println("Doctor: " + Personas.get(i) + " Paciente: " + Personas.get(i));
         }
     }
