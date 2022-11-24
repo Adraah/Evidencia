@@ -62,7 +62,7 @@ public class Main {
                 case 7:
                     break;
             }
-        }while(num != 4);
+        }while(num != 7);
 
         doctores.save(doctores.Doctor);
     }
