@@ -2,52 +2,68 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        showMenu();
-    }
-
-    public static void showMenu() {
         Scanner scan = new Scanner(System.in);
+        Doctores doctores = new Doctores();
+        Pacientes pacientes = new Pacientes();
+        Citas citas = new Citas();
+        int num;
 
-        System.out.println("Selecciona una opcion: ");
-        System.out.println("1 Crear cita");
-        System.out.println("2 Alta cita");
-        System.out.println("3 Alta doctor");
-        System.out.println("4 Get doctores");
-        System.out.println("5 Get pacientes");
-        System.out.println("6 Get citas");
-        System.out.println("7 Guardar");
-        System.out.println("0 Salir");
+        doctores.load();
+        pacientes.load();
+        citas.load();
 
-        int num = scan.nextInt();
+        do{
+            System.out.println("Selecciona una opcion: ");
+            System.out.println("1 Alta doctor");
+            System.out.println("2 Alta paciente");
+            System.out.println("3 Alta cita");
+            System.out.println("4 Lista doctores");
+            System.out.println("5 Lista pacientes");
+            System.out.println("6 Lista citas");
+            System.out.println("7 Salir");
 
-        switch (num){
-            case 0:
-                break;
-            case 1:
-                System.out.println("Crear cita");
-                break;
-            case 2:
-                System.out.println("Alta cita");
-                break;
-            case 3:
-                System.out.println("Alta doctor");
-                break;
-            case 4:
-                System.out.println("Get doctores");
-                break;
-            case 5:
-                System.out.println("Get pacientes");
-                break;
-            case 6:
-                System.out.println("Get citas");
-                break;
-            case 7:
-                System.out.println("Guardar");
-                break;
-            case default:
-                System.out.println("Opcion no valida");
-                showMenu();
-                break;
-        }
+            num = scan.nextInt();
+
+            switch (num) {
+                case 1:
+                    System.out.println("Nombre: ");
+                    String nombre = scan.next();
+                    System.out.println("Especialidad: ");
+                    String especialidad = scan.next();
+                    doctores.create(nombre, especialidad);
+                    break;
+                case 2:
+                    System.out.println("Id: ");
+                    String id = scan.next();
+                    System.out.println("Nombre: ");
+                    String nom = scan.next();
+                    pacientes.create(id, nom);
+                    break;
+                case 3:
+                    System.out.println("Fecha y hora: ");
+                    String fyh = scan.next();
+                    System.out.println("Motivo: ");
+                    String motiv = scan.next();
+                    System.out.println("Doctor: ");
+                    String doc = scan.next();
+                    System.out.println("Paciente: ");
+                    String pac = scan.next();
+                    citas.create(fyh,motiv,doc,pac);
+                    break;
+                case 4:
+                    doctores.list();
+                    break;
+                case 5:
+                    pacientes.list();
+                    break;
+                case 6:
+                    citas.list();
+                    break;
+                case 7:
+                    break;
+            }
+        }while(num != 7);
+
+        doctores.save(doctores.Doctor);
     }
 }
